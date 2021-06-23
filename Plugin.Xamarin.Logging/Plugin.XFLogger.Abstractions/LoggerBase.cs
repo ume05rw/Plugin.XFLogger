@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Plugin.XFLogger.Abstractions
 {
-   /// <summary>
-   /// Logger base class
-   /// </summary>
+    /// <summary>
+    /// Logger base class
+    /// </summary>
     public class LoggerBase : ILogger
     {
         private string logFileName;
@@ -61,17 +57,40 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="message"></param>
         /// <param name="exception"></param>
         /// <returns></returns>
-        public string FormatMessage(LogLevel logLevel = LogLevel.Warn, string tag = "tag", string message = "message", Exception exception = null)
+        public string FormatMessage(
+            LogLevel logLevel = LogLevel.Warn,
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             string formattedMessage = "";
-            DateTime logTime = logTimeOption == LogTimeOption.DateTimeUtcnow ? DateTime.UtcNow : DateTime.Now;
+            DateTime logTime = logTimeOption == LogTimeOption.DateTimeUtcnow
+                ? DateTime.UtcNow
+                : DateTime.Now;
             if (exception == null)
             {
-                formattedMessage = String.Format("{0} {1} {2} {3}", logLevel, logTime, tag, message);
+                formattedMessage
+                    = String.Format(
+                        "{0} {1} {2} {3}",
+                        logLevel,
+                        logTime.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        tag,
+                        message
+                    );
             }
             else
             {
-                formattedMessage = String.Format("{0} {1} {2} {3} EXCEPTION: {4} STACK TRACE: {5}", logLevel.ToString(), logTime, tag, message, exception?.Message, exception?.StackTrace?.ToString());
+                formattedMessage
+                    = String.Format(
+                        "{0} {1} {2} {3} EXCEPTION: {4} STACK TRACE: {5}",
+                        logLevel.ToString(),
+                        logTime.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        tag,
+                        message,
+                        exception?.Message,
+                        exception?.StackTrace?.ToString()
+                    );
             }
             formattedMessage += Environment.NewLine;
             return formattedMessage;
@@ -85,7 +104,14 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="maxLogFileSizeKb"></param>
         /// <param name="logLevel"></param>
         /// <param name="logToConsole"></param>
-        public virtual void Configure(LogTimeOption logTimeOption = LogTimeOption.DateTimeNow, string logFileName = "app.log", int maxLogFilesCount = 3, int maxLogFileSizeKb = 100, LogLevel logLevel = LogLevel.Warn, bool logToConsole = false)
+        public virtual void Configure(
+            LogTimeOption logTimeOption = LogTimeOption.DateTimeNow,
+            string logFileName = "app.log",
+            int maxLogFilesCount = 3,
+            int maxLogFileSizeKb = 100,
+            LogLevel logLevel = LogLevel.Warn,
+            bool logToConsole = false
+        )
         {
             this.logTimeOption = logTimeOption;
             this.logFileName = logFileName;
@@ -110,7 +136,12 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="tag"></param>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public virtual void Log(LogLevel logLevel = LogLevel.Warn, string tag = "tag", string message = "message", Exception exception = null)
+        public virtual void Log(
+            LogLevel logLevel = LogLevel.Warn,
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             throw new NotImplementedException();
         }
@@ -120,7 +151,11 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="tag"></param>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public virtual void Debug(string tag = "tag", string message = "message", Exception exception = null)
+        public virtual void Debug(
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             Log(LogLevel.Debug, tag, message, exception);
         }
@@ -130,7 +165,11 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="tag"></param>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public virtual void Info(string tag = "tag", string message = "message", Exception exception = null)
+        public virtual void Info(
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             Log(LogLevel.Info, tag, message, exception);
         }
@@ -140,7 +179,11 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="tag"></param>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public virtual void Warn(string tag = "tag", string message = "message", Exception exception = null)
+        public virtual void Warn(
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             Log(LogLevel.Warn, tag, message, exception);
         }
@@ -150,7 +193,11 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="tag"></param>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public virtual void Error(string tag = "tag", string message = "message", Exception exception = null)
+        public virtual void Error(
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             Log(LogLevel.Error, tag, message, exception);
         }
@@ -160,7 +207,11 @@ namespace Plugin.XFLogger.Abstractions
         /// <param name="tag"></param>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public virtual void Fatal(string tag = "tag", string message = "message", Exception exception = null)
+        public virtual void Fatal(
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             Log(LogLevel.Fatal, tag, message, exception);
         }

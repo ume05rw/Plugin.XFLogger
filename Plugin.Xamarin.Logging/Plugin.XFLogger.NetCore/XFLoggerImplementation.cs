@@ -1,15 +1,12 @@
-using Plugin.XFLogger.Abstractions;
+﻿using Plugin.XFLogger.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Plugin.XFLogger
+namespace Plugin.XFLogger.NetCore
 {
-    /// <summary>
-    /// Implementation for Logger
-    /// </summary>
     public class XFLoggerImplementation : LoggerBase
     {
         /// <summary>
@@ -46,11 +43,10 @@ namespace Plugin.XFLogger
         /// <returns></returns>
         public override string GetLocalStoragePath()
         {
-            string localStoragePath = Environment.GetFolderPath(
-                Environment.SpecialFolder.Personal
-            );
+            string localStoragePath = Directory.GetCurrentDirectory();
             return localStoragePath;
         }
+
         /// <summary>
         /// Log message
         /// </summary>
@@ -100,9 +96,10 @@ namespace Plugin.XFLogger
         private string reverseLog(string logContent)
         {
             List<string> logs = logContent.Split(
-                new string[] { Environment.NewLine },
+                new string[]  { Environment.NewLine },
                 StringSplitOptions.RemoveEmptyEntries
             ).ToList();
+
             logs.Reverse();
             StringBuilder str = new StringBuilder();
             logs.ForEach(s =>

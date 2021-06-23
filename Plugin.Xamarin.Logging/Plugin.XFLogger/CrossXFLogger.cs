@@ -9,7 +9,10 @@ namespace Plugin.XFLogger
     /// </summary>
     public class CrossXFLogger
     {
-        static Lazy<ILogger> Implementation = new Lazy<ILogger>(() => CreateLogger(), System.Threading.LazyThreadSafetyMode.PublicationOnly);
+        private static Lazy<ILogger> Implementation = new Lazy<ILogger>(
+            () => CreateLogger(),
+            System.Threading.LazyThreadSafetyMode.PublicationOnly
+        );
 
         /// <summary>
         /// Current settings to use
@@ -27,7 +30,7 @@ namespace Plugin.XFLogger
             }
         }
 
-        static ILogger CreateLogger()
+        private static ILogger CreateLogger()
         {
 #if PORTABLE
         return null;
@@ -38,7 +41,13 @@ namespace Plugin.XFLogger
 
         internal static Exception NotImplementedInReferenceAssembly()
         {
-            return new NotImplementedException("This functionality is not implemented in the portable version of this assembly.  You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
+            return new NotImplementedException(
+                "This functionality is not implemented "
+                + "in the portable version of this assembly."
+                + " You should reference the NuGet package "
+                + "from your main application project in order to reference "
+                + "the platform-specific implementation."
+            );
         }
     }
 }

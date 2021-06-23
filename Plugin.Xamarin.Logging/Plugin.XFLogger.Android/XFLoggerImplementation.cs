@@ -22,9 +22,23 @@ namespace Plugin.XFLogger
         /// <param name="maxLogFileSizeKb"></param>
         /// <param name="logLevel"></param>
         /// <param name="logToConsole"></param>
-        public override void Configure(LogTimeOption logTimeOption = LogTimeOption.DateTimeNow, string logFileName = "app.log", int maxLogFilesCount = 3, int maxLogFileSizeKb = 1000, LogLevel logLevel = LogLevel.Warn, bool logToConsole = false)
+        public override void Configure(
+            LogTimeOption logTimeOption = LogTimeOption.DateTimeNow,
+            string logFileName = "app.log",
+            int maxLogFilesCount = 3,
+            int maxLogFileSizeKb = 1000,
+            LogLevel logLevel = LogLevel.Warn,
+            bool logToConsole = false
+        )
         {
-            base.Configure(logTimeOption, logFileName, maxLogFilesCount, maxLogFileSizeKb, logLevel, logToConsole);
+            base.Configure(
+                logTimeOption,
+                logFileName,
+                maxLogFilesCount,
+                maxLogFileSizeKb,
+                logLevel,
+                logToConsole
+            );
         }
 
         /// <summary>
@@ -33,7 +47,9 @@ namespace Plugin.XFLogger
         /// <returns></returns>
         public override string GetLocalStoragePath()
         {
-            string localStoragePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string localStoragePath = Environment.GetFolderPath(
+                Environment.SpecialFolder.Personal
+            );
             return localStoragePath;
         }
 
@@ -44,7 +60,12 @@ namespace Plugin.XFLogger
         /// <param name="tag"></param>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public override void Log(LogLevel logLevel = LogLevel.Warn, string tag = "tag", string message = "message", Exception exception = null)
+        public override void Log(
+            LogLevel logLevel = LogLevel.Warn,
+            string tag = "tag",
+            string message = "message",
+            Exception exception = null
+        )
         {
             LogLevel currentLogLevel = GetLogLevel();
             if (logLevel >= currentLogLevel)
@@ -97,7 +118,10 @@ namespace Plugin.XFLogger
 
         private string reverseLog(string logContent)
         {
-            List<string> logs = logContent.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> logs = logContent.Split(
+                new string[] { Environment.NewLine },
+                StringSplitOptions.RemoveEmptyEntries
+            ).ToList();
             logs.Reverse();
             StringBuilder str = new StringBuilder();
             logs.ForEach(s =>

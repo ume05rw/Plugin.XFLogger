@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XFLogger", "Plugin.XFLogger\Plugin.XFLogger.csproj", "{6322F424-A1E0-4C86-920A-527ABBD80C39}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XFLogger.Android", "Plugin.XFLogger.Android\Plugin.XFLogger.Android.csproj", "{56A56F17-7DE1-4CA1-9617-BF32E971AC84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XFLogger.iOS", "Plugin.XFLogger.iOS\Plugin.XFLogger.iOS.csproj", "{2882AEEB-D4CD-4EB9-8A6C-6653B33681F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XFLogger.NetCore", "Plugin.XFLogger.NetCore\Plugin.XFLogger.NetCore.csproj", "{F004F795-61C1-4ECD-A0CF-84C8DA56C54F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2882AEEB-D4CD-4EB9-8A6C-6653B33681F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2882AEEB-D4CD-4EB9-8A6C-6653B33681F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2882AEEB-D4CD-4EB9-8A6C-6653B33681F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F004F795-61C1-4ECD-A0CF-84C8DA56C54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F004F795-61C1-4ECD-A0CF-84C8DA56C54F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F004F795-61C1-4ECD-A0CF-84C8DA56C54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F004F795-61C1-4ECD-A0CF-84C8DA56C54F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
