@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Plugin.XFLogger.NetCore
+namespace Plugin.XFLogger
 {
     public class XFLoggerImplementation : LoggerBase
     {
