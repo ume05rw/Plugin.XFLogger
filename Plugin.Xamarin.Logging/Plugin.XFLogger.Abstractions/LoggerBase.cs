@@ -8,7 +8,9 @@ namespace Plugin.XFLogger.Abstractions
     public class LoggerBase : ILogger
     {
         private string logFileName;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private int maxLogFilesCount;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private int maxLogFileSizeKb;
         private LogLevel logLevel;
         private bool logToConsole;
@@ -64,10 +66,10 @@ namespace Plugin.XFLogger.Abstractions
             Exception exception = null
         )
         {
-            string formattedMessage = "";
             DateTime logTime = logTimeOption == LogTimeOption.DateTimeUtcnow
                 ? DateTime.UtcNow
                 : DateTime.Now;
+            string formattedMessage;
             if (exception == null)
             {
                 formattedMessage

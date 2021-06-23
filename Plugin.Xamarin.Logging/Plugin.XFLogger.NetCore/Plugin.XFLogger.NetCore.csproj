@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\Plugin.XFLogger\CrossXFLogger.cs" Link="CrossXFLogger.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Plugin.XFLogger.Abstractions\Plugin.XFLogger.Abstractions.csproj" />
   </ItemGroup>
 

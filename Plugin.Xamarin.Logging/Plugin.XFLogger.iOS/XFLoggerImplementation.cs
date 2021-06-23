@@ -93,11 +93,11 @@ namespace Plugin.XFLogger
             string logFilePath = Path.Combine(localStoragePath, logFileName);
             if (File.Exists(logFilePath)) log = File.ReadAllText(logFilePath);
             if (inDescendingOrder)
-                log = reverseLog(log);
+                log = ReverseLog(log);
             return log;
         }
 
-        private string reverseLog(string logContent)
+        private string ReverseLog(string logContent)
         {
             List<string> logs = logContent.Split(
                 new string[] { Environment.NewLine },

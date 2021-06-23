@@ -1,7 +1,6 @@
 ﻿using Plugin.XFLogger.Abstractions;
 using System;
 
-
 namespace Plugin.XFLogger
 {
     /// <summary>
@@ -9,7 +8,7 @@ namespace Plugin.XFLogger
     /// </summary>
     public class CrossXFLogger
     {
-        private static Lazy<ILogger> Implementation = new Lazy<ILogger>(
+        private static readonly Lazy<ILogger> Implementation = new Lazy<ILogger>(
             () => CreateLogger(),
             System.Threading.LazyThreadSafetyMode.PublicationOnly
         );
