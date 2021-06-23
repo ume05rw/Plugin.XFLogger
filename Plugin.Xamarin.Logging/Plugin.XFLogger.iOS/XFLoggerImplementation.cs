@@ -71,8 +71,18 @@ namespace Plugin.XFLogger
                 string logFileName = GetLogFileName();
                 string localStoragePath = GetLocalStoragePath();
                 string logFilePath = Path.Combine(localStoragePath, logFileName);
-                string formattedMessage = FormatMessage(logLevel, tag, message, exception);
-                File.AppendAllText(logFilePath, formattedMessage);
+                string formattedMessage = FormatMessage(
+                    logLevel,
+                    tag,
+                    message,
+                    exception
+                );
+
+                this.LockedInvoke(() =>
+                {
+                    File.AppendAllText(logFilePath, formattedMessage);
+                });
+
                 bool logToConsole = GetLogToConsole();
                 if (logToConsole)
                 {

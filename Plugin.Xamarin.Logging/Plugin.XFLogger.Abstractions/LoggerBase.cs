@@ -7,6 +7,45 @@ namespace Plugin.XFLogger.Abstractions
     /// </summary>
     public class LoggerBase : ILogger
     {
+        private class Locker
+        {
+            public bool IsLocked { get; set; }
+
+            public Locker()
+            {
+                this.IsLocked = false;
+            }
+
+
+            public void LockedInvoke(Action action)
+            {
+                if (action == null)
+                    throw new ArgumentException("Required Argument action.");
+
+                Exception exception = null;
+                lock (this)
+                {
+                    this.IsLocked = true;
+                    try
+                    {
+                        action.Invoke();
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+                    finally
+                    {
+                        this.IsLocked = false;
+                    }
+                }
+
+                if (exception != null)
+                    throw exception;
+            }
+        }
+
+
         private string logFileName;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:読み取られていないプライベート メンバーを削除", Justification = "<保留中>")]
         private int maxLogFilesCount;
@@ -15,6 +54,8 @@ namespace Plugin.XFLogger.Abstractions
         private LogLevel logLevel;
         private bool logToConsole;
         private LogTimeOption logTimeOption;
+        private readonly Locker _locker;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -26,7 +67,12 @@ namespace Plugin.XFLogger.Abstractions
             logLevel = LogLevel.Warn;
             logTimeOption = LogTimeOption.DateTimeNow;
             logToConsole = false;
+            this._locker = new Locker();
         }
+
+        protected void LockedInvoke(Action action)
+            => this._locker.LockedInvoke(action);
+
         /// <summary>
         /// Get the log file name
         /// </summary>
