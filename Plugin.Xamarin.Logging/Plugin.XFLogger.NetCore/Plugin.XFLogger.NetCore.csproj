@@ -8,6 +8,10 @@
     <Version>1.0.2</Version>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\dev\Library\Plugin.XFLogger\Plugin.Xamarin.Logging\Plugin.XFLogger.NetCore\Plugin.XFLogger.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="..\Plugin.XFLogger\CrossXFLogger.cs" Link="CrossXFLogger.cs" />
   </ItemGroup>
